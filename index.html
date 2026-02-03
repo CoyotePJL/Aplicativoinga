@@ -2,119 +2,122 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ingá Pintura</title>
     
     <link rel="manifest" href="manifest.json?v=2">
     <meta name="theme-color" content="#007bff">
     <meta name="mobile-web-app-capable" content="yes">
-    
     <link rel="icon" sizes="192x192" href="https://i.ibb.co/v66rXWfS/2594.jpg">
     
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
-    <h1>Ingá Pintura</h1>
+    <h1 style="color: #007bff; text-align: center;">Ingá Pintura</h1>
 
     <div class="campo-orcamento">
-        <label for="metros">Tamanho da Parede (m²):</label>
-        <input type="number" id="metros" placeholder="Ex: 12" value="12">
+        <label for="qtdParedes">Quantidade de Paredes:</label>
+        <input type="number" id="qtdParedes" value="1" min="1">
+    </div>
+
+    <div class="campo-orcamento">
+        <label for="metros">Tamanho de CADA Parede (m²):</label>
+        <input type="number" id="metros" value="12" placeholder="Ex: 12">
     </div>
 
     <div class="campo-orcamento">
         <label>Possui umidade para tratar?</label>
         <div class="opcoes-radio">
-            <input type="radio" name="umidade" value="nao" id="umidadeNao" checked onclick="toggleUmidade()">
-            <label for="umidadeNao" class="label-inline">Não</label>
-            
-            <input type="radio" name="umidade" value="sim" id="umidadeSim" onclick="toggleUmidade()">
-            <label for="umidadeSim" class="label-inline">Sim</label>
+            <input type="radio" name="umidade" id="umidadeNao" checked onclick="toggleUmidade()">
+            <label for="umidadeNao">Não</label>
+            <input type="radio" name="umidade" id="umidadeSim" onclick="toggleUmidade()">
+            <label for="umidadeSim">Sim</label>
         </div>
     </div>
-    <div id="campoValorUmidade" style="display: none;">
-        <label for="valorUmidade">Valor Tratamento Umidade (R$):</label>
+    <div id="campoValorUmidade" style="display: none;" class="campo-orcamento">
+        <label for="valorUmidade">Valor do Tratamento (R$):</label>
         <input type="number" id="valorUmidade" placeholder="Valor manual">
     </div>
 
     <div class="campo-orcamento">
-        <label for="tipoMassa">Tipo de Aplicação de Massa:</label>
+        <label for="tipoMassa">Aplicação de Massa:</label>
         <select id="tipoMassa" onchange="toggleMassa()">
             <option value="nenhuma">Nenhuma</option>
-            <option value="pequeno">Pequeno Reparo (Valor Manual)</option>
-            <option value="corrida">Acabamento Fino - Massa Corrida</option>
-            <option value="acrilica">Acabamento Fino - Massa Acrílica</option>
+            <option value="pequeno">Pequeno Reparo (Manual)</option>
+            <option value="corrida">Massa Corrida (m²)</option>
+            <option value="acrilica">Massa Acrílica (m²)</option>
         </select>
     </div>
-    <div id="campoMassaManual" style="display: none;">
-        <label for="valorMassaManual">Valor do Reparo (R$):</label>
-        <input type="number" id="valorMassaManual" placeholder="Valor manual">
+    <div id="campoMassaManual" style="display: none;" class="campo-orcamento">
+        <input type="number" id="valorMassaManual" placeholder="Valor do reparo (R$)">
     </div>
-    <div id="campoDemaosMassa" style="display: none;">
-        <label for="demaosMassa">Quantidade de Demãos de Massa:</label>
+    <div id="campoDemaosMassa" style="display: none;" class="campo-orcamento">
+        <label for="demaosMassa">Quantas Demãos de Massa?</label>
         <input type="number" id="demaosMassa" value="2" min="1">
     </div>
 
     <div class="campo-orcamento">
         <label for="tipoLixamento">Tipo de Lixamento:</label>
         <select id="tipoLixamento" onchange="toggleLixamento()">
-            <option value="nenhum">Não precisa lixar</option>
-            <option value="manual_pequeno">Pequeno Reparo (Valor Manual)</option>
-            <option value="lixa_corrida">Lixar Massa Corrida</option>
-            <option value="lixa_acrilica">Lixar Massa Acrílica</option>
+            <option value="nao">Não precisa lixar</option>
+            <option value="manual_pequeno">Lixamento Manual (Valor Fixo)</option>
+            <option value="lixa_corrida">Lixamento Massa Corrida (m²)</option>
+            <option value="lixa_acrilica">Lixamento Massa Acrílica (m²)</option>
         </select>
     </div>
-    <div id="campoLixamentoManual" style="display: none;">
-        <label for="valorLixaManual">Valor do Lixamento (R$):</label>
-        <input type="number" id="valorLixaManual" placeholder="Valor manual">
+    <div id="campoLixamentoManual" style="display: none;" class="campo-orcamento">
+        <input type="number" id="valorLixaManual" placeholder="Valor lixamento (R$)">
     </div>
 
     <div class="campo-orcamento">
-      
-          <div class="campo-orcamento">
         <label for="estadoParede">Estado Atual da Parede:</label>
         <select id="estadoParede">
-            <option value="simples">Simples (Apenas Pintura)</option>
-            <option value="liso">Parede com Massa</option>
-            <option value="gesso">Gesso (Requer fundo preparador)</option>
+            <option value="simples">Simples (Pintura R$ 120/12m²)</option>
+            <option value="liso">Com Massa (R$ 150/12m²)</option>
+            <option value="gesso">Gesso (R$ 180/12m²)</option>
         </select>
     </div>
-
     <div class="campo-orcamento">
-        <label for="demaosTinta">Quantidade de Demãos de Tinta:</label>
+        <label for="demaosTinta">Demãos de Tinta:</label>
         <input type="number" id="demaosTinta" value="2" min="1">
     </div>
 
-    <div id="campoServicoExtra" style="display: none;" class="campo-orcamento">
-    <label for="tipoExtra">Selecione o Serviço Extra:</label>
-    <select id="tipoExtra" onchange="atualizarOpcoesExtra()">
-        <option value="">Escolha uma opção...</option>
-        <option value="verniz">Verniz (Madeira)</option>
-        <option value="metal">Metais (Portas/Janelas)</option>
-    </select>
-
-    <div id="subOpcoesExtra" style="display: none; margin-top: 15px;">
-        <label for="itemExtra">O que será pintado?</label>
-        <select id="itemExtra">
-            </select>
-
-        <label for="qtdExtra" style="margin-top: 10px;">Quantidade (unidades/folhas):</label>
-        <input type="number" id="qtdExtra" value="1" min="1">
+    <div class="campo-orcamento">
+        <label>Adicionar Verniz ou Metais?</label>
+        <div class="opcoes-radio">
+            <input type="radio" name="extra" id="extraNao" checked onclick="toggleExtra()">
+            <label for="extraNao">Não</label>
+            <input type="radio" name="extra" id="extraSim" onclick="toggleExtra()">
+            <label for="extraSim">Sim</label>
+        </div>
     </div>
-</div>
 
+    <div id="campoServicoExtra" style="display: none;" class="campo-orcamento">
+        <label for="tipoExtra">Tipo de Serviço:</label>
+        <select id="tipoExtra" onchange="atualizarOpcoesExtra()">
+            <option value="">Escolha...</option>
+            <option value="verniz">Verniz (Madeira)</option>
+            <option value="metal">Metais (Janela/Porta)</option>
+        </select>
+
+        <div id="subOpcoesExtra" style="display: none; margin-top: 10px;">
+            <label for="itemExtra">Item:</label>
+            <select id="itemExtra"></select>
+            
+            <label for="qtdExtra" style="margin-top: 10px;">Quantidade:</label>
+            <input type="number" id="qtdExtra" value="1" min="1">
+        </div>
+    </div>
 
     <button onclick="calcularOrcamento()">Gerar Orçamento Final</button>
 
     <div id="status" class="aviso">
         Preencha os dados para ver o orçamento.
     </div>
-      
-    </div> <script src="script.js"></script>
-  
-  </body>
-  
-</html>
+</div>
 
+<script src="script.js"></script>
+</body>
+</html>
