@@ -87,6 +87,25 @@
         <input type="number" id="demaosTinta" value="2" min="1">
     </div>
 
+    <div class="campo-orcamento">
+    <label>Deseja adicionar outros serviços?</label>
+    <div class="opcoes-radio">
+        <input type="radio" name="extra" value="nao" id="extraNao" checked onclick="toggleExtra()">
+        <label for="extraNao" class="label-inline">Não</label>
+        
+        <input type="radio" name="extra" value="sim" id="extraSim" onclick="toggleExtra()">
+        <label for="extraSim" class="label-inline">Sim</label>
+    </div>
+</div>
+
+<div id="campoServicoExtra" style="display: none;" class="campo-orcamento">
+    <label for="descExtra">Descrição (Ex: Pintar Grade ou Rodapé):</label>
+    <input type="text" id="descExtra" placeholder="O que será feito?">
+    
+    <label for="valorExtra" style="margin-top: 10px;">Valor do Serviço Extra (R$):</label>
+    <input type="number" id="valorExtra" placeholder="Valor manual">
+</div>
+
     <button onclick="calcularOrcamento()">Gerar Orçamento Final</button>
 
     <div id="status" class="aviso">
