@@ -1,0 +1,137 @@
+/* --- CONFIGURAÇÃO DE APP MÓVEL --- */
+* {
+    box-sizing: border-box; /* Garante que nada saia da tela */
+    -webkit-tap-highlight-color: transparent; /* Remove o brilho chato ao tocar no celular */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 480px; /* Largura ideal para celulares */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #007bff;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* --- ESTILO DOS CAMPOS (FÁCIL DE TOCAR) --- */
+.campo-orcamento {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 15px; /* Mais espaço para facilitar o toque */
+    border: 2px solid #e1e4e8;
+    border-radius: 12px;
+    font-size: 16px; /* Evita que o iPhone dê zoom automático no campo */
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    background-color: #fdfeff;
+    outline: none;
+}
+
+/* --- RÁDIOS (SIM/NÃO) ESTILO BOTÃO --- */
+.opcoes-radio {
+    display: flex;
+    gap: 15px;
+}
+
+.label-inline {
+    background: #f1f3f5;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    font-weight: normal;
+}
+
+input[type="radio"]:checked + .label-inline {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* --- CAMPOS QUE SURGEM (AZULADOS) --- */
+#campoValorUmidade, #campoMassaManual, #campoDemaosMassa, #campoLixamentoManual {
+    background-color: #f0f7ff;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 5px solid #007bff;
+    margin-top: 10px;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* --- BOTÃO DE AÇÃO (ESTILO APP) --- */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+button:active {
+    transform: scale(0.98); /* Efeito de clique físico no celular */
+}
+
+/* --- RESULTADO FINAL --- */
+.aviso {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #e1e4e8;
+    border-radius: 15px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.6;
+}
+1
+small {
+    color: #888;
+    display: block;
+    margin-top: 5px;
+}
+
+/* ANIMAÇÃO SUAVE */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
