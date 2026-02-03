@@ -32,15 +32,15 @@ function atualizarOpcoesExtra() {
 
     if (tipo === "verniz") {
         selectItem.innerHTML = `
-            <option value="15">Folha de Janela (R$ 15)</option>
-            <option value="70">Porta Lisa (R$ 70)</option>
-            <option value="90">Porta Detalhada (R$ 90)</option>
+            <option value="15">Folha de Janela</option>
+            <option value="70">Porta Lisa</option>
+            <option value="90">Porta Detalhada</option>
         `;
     } else if (tipo === "metal") {
         selectItem.innerHTML = `
-            <option value="25">Folha de Janela Metal (R$ 25)</option>
-            <option value="80">Porta Lisa Metal (R$ 80)</option>
-            <option value="100">Porta Detalhada Metal (R$ 100)</option>
+            <option value="25">Folha de Janela Metal</option>
+            <option value="80">Porta Lisa Metal</option>
+            <option value="100">Porta Detalhada Metal</option>
         `;
     }
 }
@@ -62,7 +62,7 @@ function calcularOrcamento() {
     if (tipoMassa === 'pequeno') {
         totalMassa = Number(document.getElementById('valorMassaManual').value) || 0;
     } else if (tipoMassa === 'corrida' || tipoMassa === 'acrilica') {
-        const precoBaseMassa = (tipoMassa === 'corrida') ? 60 : 85; 
+        const precoBaseMassa = (tipoMassa === 'corrida') ? 120 : 140; 
         const demaosMassa = Number(document.getElementById('demaosMassa').value) || 1;
         totalMassa = (metros / m2Base) * precoBaseMassa * demaosMassa;
     }
@@ -73,14 +73,14 @@ function calcularOrcamento() {
     if (tipoLixamento === 'manual_pequeno') {
         totalLixamento = Number(document.getElementById('valorLixaManual').value) || 0;
     } else if (tipoLixamento === 'lixa_corrida' || tipoLixamento === 'lixa_acrilica') {
-        const precoBaseLixa = (tipoLixamento === 'lixa_corrida') ? 20 : 35;
+        const precoBaseLixa = (tipoLixamento === 'lixa_corrida') ? 25 : 35;
         totalLixamento = (metros / m2Base) * precoBaseLixa;
     }
 
     // 5. Pintura
     const estado = document.getElementById('estadoParede').value;
     const demaosTinta = Number(document.getElementById('demaosTinta').value) || 1;
-    let precoEstadoBase = (estado === 'simples') ? 120 : (estado === 'liso' ? 150 : 180);
+    let precoEstadoBase = (estado === 'simples') ? 20 : (estado === 'liso' ? 30 : 35);
     const totalPintura = (metros / m2Base) * precoEstadoBase * demaosTinta;
 
     // 6. Serviços Extras (Verniz e Metais)
