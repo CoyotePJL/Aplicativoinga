@@ -75,4 +75,9 @@ function calcularOrcamento() {
     `;
 }
 
+// Registra o Service Worker para permitir instalação como App
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('script.js')
+      .then(() => console.log("App pronto para uso offline"));
+}
 
